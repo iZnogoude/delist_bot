@@ -11,12 +11,12 @@ import asyncio
 # Remplacez par vos informations
 api_id = '21792675'                             # API ID telegram
 api_hash = '7962c5e570690dc344d6d47dda7a99f0'   # API HASH telegram
-phone_number = '+33777040699'                   # telephone telegram ex : +33653485109  pour 06.53.48.51.09
+phone_number = '+33612796607'                   # telephone telegram ex : +33653485109  pour 06.53.48.51.09
 channel_username = 'coin_listing'               # Canal telegram à écouter:coin_listing  #Canal telegram pour test:AnonymousChatGroupTiga
 webhook_url = 'http://localhost/whook'          # webhook_url
-username = 'jfmayol'                            # username (bybit ou bitget)
-percentage = 100                                # Pourcentage du solde disponible
-exchange_choice = 'bybit'                       # Variables pour le choix entre bybit et bitget
+username = 'BGUSER-1M3ZWDAW'                    # username (bybit ou bitget)
+percentage = 20                                 # Pourcentage du solde disponible
+exchange_choice = 'bitget'                      # Variables pour le choix entre bybit et bitget
 
 if exchange_choice == 'bybit':
     valid_crypto_file = 'dossier_txt/bybit_valid_crypto.txt'
