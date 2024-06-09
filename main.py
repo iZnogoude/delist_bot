@@ -9,15 +9,23 @@ import subprocess
 import asyncio
 
 # Remplacez par vos informations
-api_id = '21792675'
-api_hash = '7962c5e570690dc344d6d47dda7a99f0'
-phone_number = '+33777040699'
-channel_username = 'coin_listing'   #Canal telegram à écouter:coin_listing  #Canal telegram pour test:AnonymousChatGroupTiga
-output_file = 'dossier_txt/binance_delisting.txt'
-valid_crypto_file = 'dossier_txt/bybit_valid_crypto.txt'
-webhook_url = 'http://localhost/whook'
-username = 'jfmayol'
-percentage = 90
+api_id = '21792675'                             # API ID telegram
+api_hash = '7962c5e570690dc344d6d47dda7a99f0'   # API HASH telegram
+phone_number = '+33777040699'                   # telephone telegram ex : +33653485109  pour 06.53.48.51.09
+channel_username = 'coin_listing'               # Canal telegram à écouter:coin_listing  #Canal telegram pour test:AnonymousChatGroupTiga
+webhook_url = 'http://localhost/whook'          # webhook_url
+username = 'jfmayol'                            # username (bybit ou bitget)
+percentage = 100                                # Pourcentage du solde disponible
+exchange_choice = 'bybit'                       # Variables pour le choix entre bybit et bitget
+
+if exchange_choice == 'bybit':
+    valid_crypto_file = 'dossier_txt/bybit_valid_crypto.txt'
+    script_file = 'bybit_valid_crypto.py'
+    output_file = 'dossier_txt/binance_delisting.txt'
+elif exchange_choice == 'bitget':
+    valid_crypto_file = 'dossier_txt/bitget_valid_crypto.txt'
+    script_file = 'bitget_valid_crypto.py'
+    output_file = 'dossier_txt/binance_delisting.txt'
 
 # Créer le répertoire s'il n'existe pas
 os.makedirs('dossier_txt', exist_ok=True)
@@ -37,22 +45,22 @@ with open(valid_crypto_file, 'r', encoding='utf-8') as f:
             valid_cryptos[crypto_name] = {'info': additional_info, 'turnover': turnover, 'max_leverage': max_leverage}
 
 # Fonction pour exécuter le script bybit_valid_crypto.py
-def run_bybit_valid_crypto():
-    process = subprocess.Popen(["python", "bybit_valid_crypto.py"])
+def run_exchange_valid_crypto():
+    process = subprocess.Popen(["python", script_file])
     process.wait()  # Attendre que le processus enfant se termine
-    print("Le bot est en marche et récupère les messages...")  # Ajout de cet instruction
+    print(f"--------------------------------------\n  Le bot de délisting est en marche.\n{percentage}% des fonds sont alloués sur {exchange_choice}.\n--------------------------------------")
     # Une fois le processus terminé, reconnectez-vous à l'écoute des événements Telegram
     client.loop.create_task(main())
 
 
-# Planification de l'exécution du script every 24 hours à minuit
-schedule.every().day.at("00:00").do(run_bybit_valid_crypto)
+# Planification de l'exécution du script every 24 hours
+schedule.every().day.at("12:00").do(run_exchange_valid_crypto)
 
 # Créer une nouvelle instance du client
 client = TelegramClient('session_name', api_id, api_hash)
 
 async def main():
-    print("Le bot est en marche et récupère les messages...")
+    print(f"--------------------------------------\n  Le bot de délisting est en marche.\n{percentage}% des fonds sont alloués sur {exchange_choice}.\n--------------------------------------")
     await client.start(phone=phone_number)
     channel = await client.get_entity(channel_username)
 
