@@ -9,13 +9,13 @@ import subprocess
 import asyncio
 
 # Remplacez par vos informations
-api_id = '21792675'                             # API ID telegram
-api_hash = '7962c5e570690dc344d6d47dda7a99f0'   # API HASH telegram
+api_id = '22777450'                             # API ID telegram
+api_hash = 'deba20a0e2bb2e67ac6f769fc95c99ea'   # API HASH telegram
 phone_number = '+33612796607'                   # telephone telegram ex : +33653485109  pour 06.53.48.51.09
 channel_username = 'coin_listing'               # Canal telegram à écouter:coin_listing  #Canal telegram pour test:AnonymousChatGroupTiga
 webhook_url = 'http://localhost/whook'          # webhook_url
 username = 'BGUSER-1M3ZWDAW'                    # username (bybit ou bitget)
-percentage = 20                                 # Pourcentage du solde disponible
+percentage = 50                                 # Pourcentage du solde disponible
 exchange_choice = 'bitget'                      # Variables pour le choix entre bybit et bitget
 
 if exchange_choice == 'bybit':
