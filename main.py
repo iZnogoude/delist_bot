@@ -26,6 +26,10 @@ elif exchange_choice == 'bitget':
     valid_crypto_file = 'dossier_txt/bitget_valid_crypto.txt'
     script_file = 'bitget_valid_crypto.py'
     output_file = 'dossier_txt/binance_delisting.txt'
+elif exchange_choice == 'bingx':
+    valid_crypto_file = 'dossier_txt/bingx_valid_crypto.txt'
+    script_file = 'bingx_valid_crypto.py'
+    output_file = 'dossier_txt/binance_delisting.txt'
 
 # Créer le répertoire s'il n'existe pas
 os.makedirs('dossier_txt', exist_ok=True)
