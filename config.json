@@ -1,0 +1,13 @@
+{
+    "api_id": "",
+    "api_hash": "",
+    "phone_number": "+",
+    "channel_username": "coin_listing",
+    "webhook_url": "http://localhost/whook",
+    "username": "",
+    "percentage": 10,
+    "exchange_choice": "",
+    "bitget_api_key": "",
+    "bitget_api_secret": "",
+    "bitget_passphrase": ""
+}
